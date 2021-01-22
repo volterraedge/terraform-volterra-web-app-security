@@ -16,15 +16,15 @@ This is a terraform module to create Volterra's Web Application Security usecase
 
 * Install terraform
 
-For homebrew installed on macos, run below command to install terraform. For rest follow the instructions from [this link](https://learn.hashicorp.com/tutorials/terraform/install-cli) to install terraform
+  For homebrew installed on macos, run below command to install terraform. For rest of the os follow the instructions from [this link](https://learn.hashicorp.com/tutorials/terraform/install-cli) to install terraform
 
-```bash
-$ brew tap hashicorp/tap
-$ brew install hashicorp/tap/terraform
+  ```bash
+  $ brew tap hashicorp/tap
+  $ brew install hashicorp/tap/terraform
 
-# to update
-$ brew upgrade hashicorp/tap/terraform
-```
+  # to update
+  $ brew upgrade hashicorp/tap/terraform
+  ```
 
 * Download Volterra API credential file
 
@@ -75,3 +75,4 @@ output "web_app_url" {
   value = module.web-app-security.web_app_url
 }
 ```
+
