@@ -76,3 +76,37 @@ output "web_app_url" {
 }
 ```
 
+## Requirements
+
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.9, != 0.13.0 |
+| volterra | 0.0.5 |
+
+## Providers
+
+| Name | Version |
+|------|---------|
+| volterra | 0.0.5 |
+
+## Inputs
+
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| app\_domain | App domain name, whose sub domain is delegated and managed by Volterra | `string` | n/a | yes |
+| enable\_hsts | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
+| enable\_redirect | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
+| js\_cookie\_expiry | Javascript cookie expiry time in seconds | `number` | `3600` | no |
+| js\_script\_delay | Javascript challenge delay in miliseconds | `number` | `5000` | no |
+| origin\_server\_dns\_name | Origin server's publicly resolvable dns name | `string` | `"www.f5.com"` | no |
+| origin\_server\_sni | Origin server's SNI value | `string` | `""` | no |
+| volterra\_namespace | Volterra app namespace where the object will be created. This cannot be system or shared ns. | `string` | n/a | yes |
+| volterra\_namespace\_exists | Flag to create or use existing volterra namespace | `string` | `false` | no |
+| web\_app\_name | Web App Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| web\_app\_url | n/a |
+
