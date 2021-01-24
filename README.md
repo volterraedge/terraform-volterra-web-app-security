@@ -5,6 +5,7 @@
 
 This is a terraform module to create Volterra's Web Application Security usecase. Read the [Web Appplication Security usecase guide](https://volterra.io/docs/quick-start/web-app-security-performance) to learn more.
 
+---
 
 ## Assumptions:
 
@@ -26,9 +27,9 @@ This is a terraform module to create Volterra's Web Application Security usecase
   $ brew upgrade hashicorp/tap/terraform
   ```
 
-* Download Volterra API credential file
+* Download Volterra API credentials file
 
-  Follow the steps under section `Generate API Certificate` from [how to manage crecredentials doc](https://volterra.io/docs/how-to/user-mgmt/credentials)
+  Follow the steps under section `Generate API Certificate` from [how to manage credentials doc](https://volterra.io/docs/how-to/user-mgmt/credentials)
 
 
 * Export the API certificate password as environment variable
@@ -37,6 +38,11 @@ This is a terraform module to create Volterra's Web Application Security usecase
   export VES_P12_PASSWORD=<your credential password>
   ```
 
+* Setup domain delegation
+
+  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation.
+
+---
 
 ## Usage Example
 
@@ -75,7 +81,7 @@ output "web_app_url" {
   value = module.web-app-security.web_app_url
 }
 ```
-
+---
 ## Requirements
 
 | Name | Version |
@@ -93,7 +99,7 @@ output "web_app_url" {
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| app\_domain | App domain name, whose sub domain is delegated and managed by Volterra | `string` | n/a | yes |
+| app\_domain | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
 | enable\_hsts | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
 | enable\_redirect | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
 | js\_cookie\_expiry | Javascript cookie expiry time in seconds | `number` | `3600` | no |
@@ -108,5 +114,5 @@ output "web_app_url" {
 
 | Name | Description |
 |------|-------------|
-| web\_app\_url | n/a |
+| web\_app\_url | Domain VIP to access the web app |
 
