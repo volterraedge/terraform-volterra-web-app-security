@@ -1,3 +1,4 @@
 output "web_app_url" {
-  value = format("https://%s", var.app_domain)
+  description = "Domain VIP to access the web app"
+  value       = format("https://%s", var.app_domain)
 }
