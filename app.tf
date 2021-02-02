@@ -46,6 +46,11 @@ resource "volterra_waf" "this" {
     webserver = []
   }
   mode = "BLOCK"
+  lifecycle {
+    ignore_changes = [
+      app_profile
+    ]
+  }
 }
 
 resource "volterra_http_loadbalancer" "this" {

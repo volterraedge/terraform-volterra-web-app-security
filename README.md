@@ -51,7 +51,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.0.5"
+      version = "0.0.6"
     }
   }
 }
@@ -71,14 +71,14 @@ provider "volterra" {
 
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
-  version            = "0.0.2"
+  version            = "0.0.3"
   web_app_name       = var.name
   volterra_namespace = var.name
   app_domain         = var.domain_name
 }
 
 output "web_app_url" {
-  value = module.web-app-security.web_app_url
+  value = module.web-app-security.app_url
 }
 ```
 ---
@@ -87,13 +87,13 @@ output "web_app_url" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.12.9, != 0.13.0 |
-| volterra | 0.0.5 |
+| volterra | 0.0.6 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| volterra | 0.0.5 |
+| volterra | 0.0.6 |
 
 ## Inputs
 
@@ -114,5 +114,5 @@ output "web_app_url" {
 
 | Name | Description |
 |------|-------------|
-| web\_app\_url | Domain VIP to access the web app |
+| app\_url | Domain VIP to access the web app |
 
