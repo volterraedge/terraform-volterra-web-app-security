@@ -64,11 +64,15 @@ terraform {
 }
 
 variable "api_url" {
-  default = "https://acmecorp.console.ves.volterra.io/api"
+  #--- UNCOMMENT FOR TEAM OR ORG TENANTS
+  # default = "https://<TENANT-NAME>.console.ves.volterra.io/api"
+  #--- UNCOMMENT FOR INDIVIDUAL/FREEMIUM
+  # default = "https://console.ves.volterra.io/api"
 }
 
+# This points the absolute path of the api credentials file you downloaded from Volterra
 variable "api_p12_file" {
-  default = "acmecorp.console.api-creds.p12"
+  default = "path/to/your/api-creds.p12"
 }
 
 variable "app_fqdn" {}
@@ -90,7 +94,7 @@ provider "volterra" {
 
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
-  version            = "0.0.4"
+  version            = "0.0.5"
   web_app_name       = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
