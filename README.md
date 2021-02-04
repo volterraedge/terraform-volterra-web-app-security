@@ -7,13 +7,29 @@ This is a terraform module to create Volterra's Web Application Security usecase
 
 ---
 
-## Assumptions:
+## Overview
 
-* You already have signed up for Volterra account. If not, use this link to [signup](https://console.ves.volterra.io/signup/)
+![Image of WAS Usecase](https://volterra.io/static/b1b58dbfa0234c06ffab28c64d38629b/5acad/top-wasp-new.webp)
 
 ---
 
 ## Prerequisites
+
+### Volterra Account
+
+* Signup For Volterra Account
+
+  If you don't have a Volterra account. Please follow this link to [signup](https://console.ves.volterra.io/signup/)
+
+* Download Volterra API credentials file
+
+  Follow [how to generate API Certificate](https://volterra.io/docs/how-to/user-mgmt/credentials) to create API credentials
+
+* Setup domain delegation
+
+  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation
+
+### Command Line Tools
 
 * Install terraform
 
@@ -27,20 +43,11 @@ This is a terraform module to create Volterra's Web Application Security usecase
   $ brew upgrade hashicorp/tap/terraform
   ```
 
-* Download Volterra API credentials file
-
-  Follow the steps under section `Generate API Certificate` from [how to manage credentials doc](https://volterra.io/docs/how-to/user-mgmt/credentials)
-
-
 * Export the API certificate password as environment variable
 
   ```bash
   export VES_P12_PASSWORD=<your credential password>
   ```
-
-* Setup domain delegation
-
-  Follow steps from this [link](https://volterra.io/docs/how-to/app-networking/domain-delegation) to create domain delegation.
 
 ---
 
@@ -64,6 +71,18 @@ variable "api_p12_file" {
   default = "acmecorp.console.api-creds.p12"
 }
 
+variable "app_fqdn" {}
+
+variable "namespace" {
+  default = ""
+}
+
+variable "name" {}
+
+locals{
+  namespace = var.namespace != "" ? var.namespace : var.name
+}
+
 provider "volterra" {
   api_p12_file = var.api_p12_file
   url          = var.api_url
@@ -71,10 +90,10 @@ provider "volterra" {
 
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
-  version            = "0.0.3"
+  version            = "0.0.4"
   web_app_name       = var.name
-  volterra_namespace = var.name
-  app_domain         = var.domain_name
+  volterra_namespace = local.namespace
+  app_domain         = var.app_fqdn
 }
 
 output "web_app_url" {
