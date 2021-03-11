@@ -58,7 +58,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.1.0"
+      version = "0.2.1"
     }
   }
 }
@@ -94,7 +94,7 @@ provider "volterra" {
 
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
-  version            = "0.1.0"
+  version            = "0.1.1"
   web_app_name       = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
@@ -105,18 +105,19 @@ output "web_app_url" {
 }
 ```
 ---
+
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.12.9, != 0.13.0 |
-| volterra | 0.1.0 |
+| terraform | >= 0.13.1 |
+| volterra | 0.2.1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| volterra | 0.1.0 |
+| volterra | 0.2.1 |
 
 ## Inputs
 
