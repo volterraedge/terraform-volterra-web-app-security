@@ -80,9 +80,8 @@ resource "volterra_http_loadbalancer" "this" {
   service_policies_from_namespace = true
   no_challenge                    = false
   js_challenge {
-    enable_js_challenge = true
-    js_script_delay     = var.js_script_delay
-    cookie_expiry       = var.js_cookie_expiry
+    js_script_delay = var.js_script_delay
+    cookie_expiry   = var.js_cookie_expiry
   }
 }
 
