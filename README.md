@@ -94,7 +94,6 @@ provider "volterra" {
 
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
-  version            = "0.1.1"
   web_app_name       = var.name
   volterra_namespace = local.namespace
   app_domain         = var.app_fqdn
