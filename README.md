@@ -58,7 +58,7 @@ terraform {
   required_providers {
     volterra = {
       source = "volterraedge/volterra"
-      version = "0.2.1"
+      version = "0.3.0"
     }
   }
 }
@@ -110,13 +110,13 @@ output "web_app_url" {
 | Name | Version |
 |------|---------|
 | terraform | >= 0.13.1 |
-| volterra | 0.2.1 |
+| volterra | 0.3.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| volterra | 0.2.1 |
+| volterra | 0.3.0 |
 
 ## Inputs
 
