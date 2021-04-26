@@ -81,6 +81,10 @@ variable "namespace" {
   default = ""
 }
 
+variable "disable_js_challenge" {
+  default = false
+}
+
 variable "name" {}
 
 locals{
@@ -93,10 +97,11 @@ provider "volterra" {
 }
 
 module "web-app-security" {
-  source             = "volterraedge/web-app-security/volterra"
-  web_app_name       = var.name
-  volterra_namespace = local.namespace
-  app_domain         = var.app_fqdn
+  source               = "volterraedge/web-app-security/volterra"
+  web_app_name         = var.name
+  volterra_namespace   = local.namespace
+  app_domain           = var.app_fqdn
+  disable_js_challenge = var.disable_js_challenge
 }
 
 output "web_app_url" {
