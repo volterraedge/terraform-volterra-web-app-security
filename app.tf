@@ -79,9 +79,12 @@ resource "volterra_http_loadbalancer" "this" {
   round_robin                     = true
   service_policies_from_namespace = true
   no_challenge                    = var.disable_js_challenge
-  js_challenge {
-    js_script_delay = var.js_script_delay
-    cookie_expiry   = var.js_cookie_expiry
+  dynamic "js_challenge" {
+    for_each = local.js_delay_list
+    content {
+      js_script_delay = js_challenge.value["js_script_delay"]
+      cookie_expiry   = js_challenge.value["cookie_expiry"]
+    }
   }
 }
 
