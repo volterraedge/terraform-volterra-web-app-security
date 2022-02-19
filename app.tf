@@ -36,21 +36,11 @@ resource "volterra_origin_pool" "this" {
   }
 }
 
-resource "volterra_waf" "this" {
-  name        = format("%s-waf", var.web_app_name)
-  description = format("WAF in block mode for %s", var.web_app_name)
-  namespace   = local.namespace
-  app_profile {
-    cms       = []
-    language  = []
-    webserver = []
-  }
-  mode = "BLOCK"
-  lifecycle {
-    ignore_changes = [
-      app_profile
-    ]
-  }
+resource "volterra_app_firewall" "this" {
+  name                     = format("%s-waf", var.web_app_name)
+  description              = format("WAF in block mode for %s", var.web_app_name)
+  namespace                = local.namespace
+  allow_all_response_codes = true
 }
 
 resource "volterra_http_loadbalancer" "this" {
@@ -70,8 +60,8 @@ resource "volterra_http_loadbalancer" "this" {
     http_redirect = var.enable_redirect
     no_mtls       = true
   }
-  waf {
-    name      = volterra_waf.this.name
+  app_firewall {
+    name      = volterra_app_firewall.this.name
     namespace = local.namespace
   }
   disable_waf                     = false

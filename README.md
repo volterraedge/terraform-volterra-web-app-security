@@ -103,39 +103,50 @@ output "web_app_url" {
   value = module.web-app-security.app_url
 }
 ```
----
-
 ## Requirements
 
 | Name | Version |
 |------|---------|
-| terraform | >= 0.13.1 |
-| volterra | 0.4.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13.1 |
+| <a name="requirement_volterra"></a> [volterra](#requirement\_volterra) | >= 0.11.5 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| volterra | 0.4.0 |
+| <a name="provider_volterra"></a> [volterra](#provider\_volterra) | >= 0.11.5 |
+
+## Modules
+
+No modules.
+
+## Resources
+
+| Name | Type |
+|------|------|
+| [volterra_app_firewall.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/app_firewall) | resource |
+| [volterra_http_loadbalancer.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/http_loadbalancer) | resource |
+| [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/namespace) | resource |
+| [volterra_origin_pool.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/resources/origin_pool) | resource |
+| [volterra_namespace.this](https://registry.terraform.io/providers/volterraedge/volterra/latest/docs/data-sources/namespace) | data source |
 
 ## Inputs
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| app\_domain | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
-| enable\_hsts | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
-| enable\_redirect | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
-| js\_cookie\_expiry | Javascript cookie expiry time in seconds | `number` | `3600` | no |
-| js\_script\_delay | Javascript challenge delay in miliseconds | `number` | `5000` | no |
-| origin\_server\_dns\_name | Origin server's publicly resolvable dns name | `string` | `"www.f5.com"` | no |
-| origin\_server\_sni | Origin server's SNI value | `string` | `""` | no |
-| volterra\_namespace | Volterra app namespace where the object will be created. This cannot be system or shared ns. | `string` | n/a | yes |
-| volterra\_namespace\_exists | Flag to create or use existing volterra namespace | `string` | `false` | no |
-| web\_app\_name | Web App Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
+| <a name="input_app_domain"></a> [app\_domain](#input\_app\_domain) | FQDN for the app. If you have delegated domain `prod.example.com`, then your app\_domain can be `<app_name>.prod.example.com` | `string` | n/a | yes |
+| <a name="input_enable_hsts"></a> [enable\_hsts](#input\_enable\_hsts) | Flag to enable hsts for HTTPS loadbalancer | `bool` | `false` | no |
+| <a name="input_enable_redirect"></a> [enable\_redirect](#input\_enable\_redirect) | Flag to enable http redirect to HTTPS loadbalancer | `bool` | `true` | no |
+| <a name="input_js_cookie_expiry"></a> [js\_cookie\_expiry](#input\_js\_cookie\_expiry) | Javascript cookie expiry time in seconds | `number` | `3600` | no |
+| <a name="input_js_script_delay"></a> [js\_script\_delay](#input\_js\_script\_delay) | Javascript challenge delay in miliseconds | `number` | `5000` | no |
+| <a name="input_origin_server_dns_name"></a> [origin\_server\_dns\_name](#input\_origin\_server\_dns\_name) | Origin server's publicly resolvable dns name | `string` | `"www.f5.com"` | no |
+| <a name="input_origin_server_sni"></a> [origin\_server\_sni](#input\_origin\_server\_sni) | Origin server's SNI value | `string` | `""` | no |
+| <a name="input_volterra_namespace"></a> [volterra\_namespace](#input\_volterra\_namespace) | Volterra app namespace where the object will be created. This cannot be system or shared ns. | `string` | n/a | yes |
+| <a name="input_volterra_namespace_exists"></a> [volterra\_namespace\_exists](#input\_volterra\_namespace\_exists) | Flag to create or use existing volterra namespace | `string` | `false` | no |
+| <a name="input_web_app_name"></a> [web\_app\_name](#input\_web\_app\_name) | Web App Name. Also used as a prefix in names of related resources. | `string` | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| app\_url | Domain VIP to access the web app |
-
+| <a name="output_app_url"></a> [app\_url](#output\_app\_url) | Domain VIP to access the web app |
