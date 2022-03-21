@@ -43,10 +43,11 @@ This is a terraform module to create Volterra's Web Application Security usecase
   $ brew upgrade hashicorp/tap/terraform
   ```
 
-* Export the API certificate password as environment variable
-
+* Export the API certificate password, path to your local p12 file and your api url as environment variables, this is needed for volterra provider to work
   ```bash
   export VES_P12_PASSWORD=<your credential password>
+  export VOLT_API_P12_FILE=<path to your local p12 file>
+  export VOLT_API_URL=<team or org tenant api url>
   ```
 
 ---
@@ -87,11 +88,6 @@ locals{
   namespace = var.namespace != "" ? var.namespace : var.name
 }
 
-provider "volterra" {
-  api_p12_file = var.api_p12_file
-  url          = var.api_url
-}
-
 module "web-app-security" {
   source             = "volterraedge/web-app-security/volterra"
   web_app_name       = var.name
@@ -103,6 +99,9 @@ output "web_app_url" {
   value = module.web-app-security.app_url
 }
 ```
+
+---
+
 ## Requirements
 
 | Name | Version |
