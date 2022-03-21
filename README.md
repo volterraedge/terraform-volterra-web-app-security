@@ -9,7 +9,7 @@ This is a terraform module to create Volterra's Web Application Security usecase
 
 ## Overview
 
-![Image of WAS Usecase](https://volterra.io/static/b1b58dbfa0234c06ffab28c64d38629b/5acad/top-wasp-new.webp)
+![Image of WAS Usecase](https://docs.cloud.f5.com/docs/static/3bf67d5ecc32d7a7145997464903d483/d4775/seq-wasp.webp)
 
 ---
 
